@@ -402,10 +402,3 @@ int main(){
     pattern21(n);
     return 0;
 }
-
-
-
-
-
-
-
