@@ -214,50 +214,14 @@ void uset()
     // Everything is exactly similar to the set. The only thing Different is that this set stores The values in unordered manner
 }
 
-void explainmap()
-{
-    // Map store its data in a unique way of the key and the value The value could be same but the key is unique
-    map<int, int> mpp;
-
-    map<int, pair<int, int>> mpp;
-
-    map<pair<int, int>, int> mpp;
-
-    mpp[1] = 2;
-    mpp.emplace(3, 1);
-
-    mpp.insert({2, 4});
-
-    mpp[2, 3] = 10;
-
-    for (auto it : mpp)
-    {
-        cout << it.first << " " << it.second << endl;
-    }
-
-    cout << mpp[1];
-    cout << mpp[5];
-
-    map<int, int> mpp;
-
-    // map<int, pair<int, int>> mpp;
-    // map<pair<int, int>, int> mpp;
-
-    mpp[1] = 2;
-    mpp.insert({3, 1});
-    mpp.insert({2, 4});
-    // mpp[{2,3}] = 10; // Comment this out if mpp key is just an 'int' instead of a 'pair'
-
-    for (auto it : mpp)
-    {
-        cout << it.first << " " << it.second << endl;
-    }
-
-    cout << mpp[1];
-    cout << mpp[5];
-}
 
 int main()
 {
-    explainset();
+    int x, y;
+    cin >> x; 
+    for (int i =1 ; i <= x; i++)
+    {
+        y = x/i;
+    }
+    cout << y;
 }
