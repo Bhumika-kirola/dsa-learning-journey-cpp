@@ -214,7 +214,22 @@ void uset()
     // Everything is exactly similar to the set. The only thing Different is that this set stores The values in unordered manner
 }
 
+void ExplainMap()
+{
+    map <int , int> mpp;
+    map <pair<int , int>, int> mpp1;
+    map < int , pair<int , int>> mpp2;
 
+    mpp[1] = 2;
+    mpp.insert({2,3});
+
+    for (auto it : mpp)
+    {
+        cout << it.first << " : " << it.second << endl;
+    }
+    auto itt = mpp.find(1);
+    cout << itt->second;
+}
 int main()
 {
     int x, y;
@@ -224,4 +239,5 @@ int main()
         y = x/i;
     }
     cout << y;
+    ExplainMap();
 }
