@@ -222,6 +222,7 @@ void ExplainMap()
 
     mpp[1] = 2;
     mpp.insert({2,3});
+    mpp.emplace(2)
 
     for (auto it : mpp)
     {
