@@ -110,6 +110,8 @@ void q_3_b(vector<int>& v, int n)
     for (int i = 0; i < index ; i++) cout << v[i] << " ";
 }
 
+// optimal method
+
 void q_3_o(vector<int>& v, int n)
 {
     sort(v.begin(), v.end());
@@ -125,6 +127,54 @@ void q_3_o(vector<int>& v, int n)
     for (int i = 0; i <= j; i++) cout << v[i] << " ";
 }
 
+// QUESTION 4: MOVE THE ARRAY K TIMES LEFT
+
+// LEFT ROTE IT FOR 1 TIME 
+
+// 12345 --- 23451
+
+void q4_1(vector<int>& v, int n)
+{
+    int temp = v[0];
+    for(int i = 1; i < n; i++)
+    {
+        v[i-1] = v[i]; 
+    }
+    v[n-1] = temp;
+
+    for (auto i : v)
+    {
+        cout << i << " "; 
+    }
+}
+
+
+void q(vector<int>& v, int n)
+{
+    int k;
+    cout << "how many time you want to rotate the array: ";
+    cin >> k;
+    for (int i = 0; i < k; i++)
+    {
+        int temp = v[0];
+        for (int j = 1 ; j < n; j++)
+        {
+            v[j-1] = v[j];
+        }
+        v[n-1] = temp;
+    }
+
+
+    for (auto i : v)
+    {
+        cout << i << " ";
+    }
+} 
+void q4_2(vector<int>& v, int n)
+{
+    
+}
+
 int main()
 {
     vector<int> vec;
@@ -137,5 +187,5 @@ int main()
         cin >> element;
         vec.push_back(element);
     }
-    q_3_o(vec, n);
+    q(vec, n);
 }
