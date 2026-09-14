@@ -170,11 +170,181 @@ void q(vector<int>& v, int n)
         cout << i << " ";
     }
 } 
-void q4_2(vector<int>& v, int n)
+void q4_2(vector<int>& v, int n, int k)
 {
+    if (k%7 == 0) return;
+    vector<int> temp;
+    int rotation;
+    if (k > n) rotation = (k%n);
     
+    for(int i = 0; i <= rotation; i++) temp.push_back(v[i]);
+    for (int i = rotation; i < n; i++)
+    {
+        v[i - rotation] = v[i];
+    }
+    for (int i = n-rotation; i < n; i++)
+    {
+        v[i] = temp[i - (n-rotation)];
+    }
+}
+// ------------------------------optimal solution----------------------------------
+void q4_3(vector<int>& v, int n, int k)
+{
+    int rotate = k%n;
+    reverse(v.begin(), v.begin() + rotate);
+    reverse(v.begin() +rotate, v.end());
+    reverse(v.begin(), v.end());
 }
 
+
+// ----------------------------------------------------------RIGHT ROTATION-------------------------------------------------------------
+
+void q5(vector<int>& v, int n, int k)
+{
+    if (k % n == 0) return;
+    if (k > n) k %= n;
+    vector<int> temp;
+    for (int i = n - k; i < n; i++) temp.push_back(v[i]);
+    for (int i = n - 1; i >= k ; i --) v[i] = v[i - k];
+    for (int i = 0; i < k; i++)
+    {
+        v[i] = temp[i];
+    }
+}
+
+void q5_1(vector<int>& v, int n, int k)
+{
+    if (k % n == 0) return;
+    if (k > n) k %= n;
+    reverse(v.end(), v.end()-k);
+    reverse(v.begin(), v.end() - k);
+    reverse(v.begin(), v.end());
+}
+//  QUESTION 6: PRINT ALL THE ZERO AT THE END OF THE ARRAY
+
+// brute
+void q6(vector<int>& v, int n)
+{
+    int ctr = 0;
+    vector<int> temp;
+    for (int i = 0 ; i < n; i ++)
+    {
+        if(v[i] == 0) ctr += 1;
+        else temp.push_back(v[i]);
+    }
+    for (int i = 0; i < temp.size(); i++)
+    {
+        v[i] = temp[i];
+    }
+    for (int i = temp.size() ; i < n; i++) v[i] = 0;
+}
+
+// optimal
+void q6_2(vector<int>& v, int n)
+{
+    int j = -1;
+    for (int i = 0; i < n; i++)
+    {
+        if (v[i] == 0) 
+        {
+            j = i;
+            break;
+        }
+    }
+    if( j == -1 ) return;
+    else
+    {
+        for (int i = j+1 ; i < n; i++)
+        {
+            if (v[i] != 0) 
+            {
+                swap(v[j], v[i]);
+                j++;
+            }
+        }
+    }
+}
+
+void q6_3 (vector<int>& v, int n)
+{
+    int i = 0;
+    int j = n - 1;
+    while(i < j && i < n && j >= 0)
+    {
+        while (i < j && v[i] != 0) i++;
+        while(j >= 0 && v[j] == 0) j--;
+        if(i < j) 
+        {
+            swap(v[i], v[j]);
+            i++;
+            j--;
+        }
+    }
+}
+
+// ----------------------------------------linear search--------------------------------
+
+int q7(vector<int>& v, int n)
+{
+    int num;
+    cout << "what number do you want to search";
+    cin >> num;
+    for(int i = 0; i < n; i ++)
+    {
+        if (v[i] == num)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
+// QUESTION 8: FIND THE UNION AND INTERSECTION OF BOTH THE SORTED ARRAY
+
+// BRUTE FORCE
+
+void q8(vector<int>& v, int n)
+{
+    cout << "THis is for the second array: ";
+    int x;
+    vector<int> v2;
+    for(int i = 0; i < n; i++)
+    {
+        cin >> x;
+        v2.push_back(x);
+    }
+
+    set<int> s;
+    for(int i = 0; i < n; i++)
+    {
+        s.insert(v[i]);
+    }
+    
+
+    for(int i = 0; i < n; i++)
+    {
+        s.insert(v2[i]);
+    }
+
+    for (auto i : s)
+    {
+        cout << i << " ";
+    }
+}
+
+// better solution 
+
+void q8_1(vector<int>& v, int n)
+{
+    cout << "input the value for the second array" << endl;
+    int x;
+    vector<int> v2;
+    for(int i = 0; i < n; i++)
+    {
+        cin >> x;
+        v2.push_back(x);
+    }
+}
 int main()
 {
     vector<int> vec;
@@ -187,5 +357,11 @@ int main()
         cin >> element;
         vec.push_back(element);
     }
-    q(vec, n);
+    // cout << "how many rotation you want: " ;
+    // int k;
+    // cin >> k;
+    // int ans = q7(vec, n);
+    q8(vec, n);
+    // (ans == -1)? cout << "there is no such number present in the array" : cout << ans ;
+    // for (auto i : vec) cout << i << " ";
 }
